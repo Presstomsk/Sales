@@ -24,5 +24,18 @@ namespace CLI
             Console.WriteLine($"[INFO] {message}");
             Console.ResetColor();
         }
+
+        public static void PrintLn(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+        public static void Print(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(message);
+            Console.ResetColor();
+        }
     }
 }

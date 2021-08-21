@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesApp", "SalesApp\SalesA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{DF7A0645-A42C-4D2A-A3C6-5EAF6248796B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesLib", "SalesLib\SalesLib.csproj", "{8CDC2DB7-1209-4577-9751-A147C526B581}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{DF7A0645-A42C-4D2A-A3C6-5EAF6248796B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF7A0645-A42C-4D2A-A3C6-5EAF6248796B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF7A0645-A42C-4D2A-A3C6-5EAF6248796B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDC2DB7-1209-4577-9751-A147C526B581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDC2DB7-1209-4577-9751-A147C526B581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDC2DB7-1209-4577-9751-A147C526B581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDC2DB7-1209-4577-9751-A147C526B581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CLI\CLI.csproj" />
-      <ProjectReference Include="..\SalesLib\SalesLib.csproj" />
+      <PackageReference Include="MySql.Data" Version="8.0.26" />
     </ItemGroup>
 
 </Project>
