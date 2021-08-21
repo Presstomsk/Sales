@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>c9a79e4a-957c-4da3-8eb6-046fef48f3cf.SCHEMA:host1323541_sbd10</OriginalElement>
+  <nodes>
+    <node x="278.5" y="362.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_orders</node>
+    <node x="288.0" y="194.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_sellers</node>
+    <node x="93.75" y="194.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_buyers</node>
+    <node x="383.0" y="26.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_positions</node>
+    <node x="471.79545454545456" y="194.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_products</node>
+    <node x="454.5" y="414.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_products_stock</node>
+    <node x="180.0" y="0.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_people</node>
+    <node x="0.0" y="13.0">c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_discounts</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_sellers" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_positions" relationship="REFERENCES">
+      <point x="39.25" y="-59.0" />
+      <point x="405.75" y="169.0" />
+      <point x="466.5" y="169.0" />
+      <point x="0.0" y="46.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_orders" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_sellers" relationship="REFERENCES">
+      <point x="0.0" y="-111.0" />
+      <point x="356.5" y="337.0" />
+      <point x="366.5" y="337.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_buyers" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_people" relationship="REFERENCES">
+      <point x="39.75" y="-59.0" />
+      <point x="213.0" y="169.0" />
+      <point x="271.5" y="169.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_products_stock" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_products" relationship="REFERENCES">
+      <point x="0.0" y="-59.0" />
+      <point x="557.5" y="337.0" />
+      <point x="549.2954545454545" y="337.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_orders" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_buyers" relationship="REFERENCES">
+      <point x="-52.0" y="-111.0" />
+      <point x="304.5" y="337.0" />
+      <point x="173.25" y="337.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_orders" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_products" relationship="REFERENCES">
+      <point x="52.0" y="-111.0" />
+      <point x="408.5" y="337.0" />
+      <point x="549.2954545454545" y="337.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_sellers" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_people" relationship="REFERENCES">
+      <point x="-39.25" y="-59.0" />
+      <point x="327.25" y="169.0" />
+      <point x="271.5" y="169.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_buyers" target="c9a79e4a-957c-4da3-8eb6-046fef48f3cf.TABLE:host1323541_sbd10.tab_discounts" relationship="REFERENCES">
+      <point x="-39.75" y="-59.0" />
+      <point x="133.5" y="169.0" />
+      <point x="80.0" y="169.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="584.0" y="292.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
