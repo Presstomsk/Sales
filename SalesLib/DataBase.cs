@@ -65,5 +65,35 @@ namespace SalesLib
             
             return count;
         }
+
+        public List<Buyer> GetBuyers()
+        {
+            var list = new List<Buyer>();
+            
+            Open();
+
+            var sql = @"SELECT tab_buyers.id, first_name, last_name, discount
+                        FROM tab_buyers
+                        JOIN tab_people 
+                            ON tab_buyers.people_id = tab_people.id
+                        JOIN tab_discounts 
+                            ON tab_buyers.discount_id = tab_discounts.id;";
+            command.CommandText = sql;
+            var res = command.ExecuteReader();
+            if (!res.HasRows) return null;
+
+            while (res.Read())
+            {
+                var id = res.GetUInt32("id");
+                var name = $"{res.GetString("first_name")} {res.GetString("last_name")}";
+                var discount = res.GetUInt32("discount");
+                
+                list.Add(new Buyer {Id = id, Name = name, Discount = discount});
+            }
+            
+            Close();
+
+            return list;
+        }
     }
 }

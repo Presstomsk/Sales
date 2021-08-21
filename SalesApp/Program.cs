@@ -11,6 +11,25 @@ namespace SalesApp
         {
             var db = new DataBase();
             var products = db.GetProducts();
+            var buyers = db.GetBuyers();
+            Buyer buyer;
+
+            foreach (var item in buyers)
+            {
+                Show.PrintLn($"{item.Id} - {item.Name}");
+            }
+            Show.PrintLn("Выберите номер покупателя");
+            var buyer_id = uint.Parse(Console.ReadLine());
+            if (buyer_id == 0)
+            {
+                buyer = new Buyer();
+            }
+            else
+            {
+                buyer = buyers[(int)(buyer_id - 1)];
+            }
+            
+            Show.PrintLn($"{buyer.Name} - {buyer.Discount}");
             
             foreach (var product in products)
             {
@@ -31,7 +50,7 @@ namespace SalesApp
             }
 
             var price = products[(int)(product_id - 1)].Price;
-            var total_price = count_user * price;
+            var total_price = count_user * (price - price * buyer.Discount / 100);
             Show.PrintLn($"Вам необходимо заплатить - {total_price}");
         }
     }
