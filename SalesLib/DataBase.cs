@@ -5,7 +5,7 @@ namespace SalesLib
 {
     public class DataBase
     {
-        private const string CONN_STR = "Server=mysql60.hostland.ru;Database=host1323541_sbd10;Uid=host1323541_itstep;Pwd=269f43dc;";
+        private const string CONN_STR = "Server=mysql60.hostland.ru;Database=host1323541_sbd17;Uid=host1323541_itstep;Pwd=269f43dc;";
         private MySqlConnection db;
         private MySqlCommand command;
 
@@ -90,9 +90,32 @@ namespace SalesLib
                 
                 list.Add(new Buyer {Id = id, Name = name, Discount = discount});
             }
-            
             Close();
+            return list;
+        }
 
+        public List<Orders> GetOrders()
+        {
+            Open();
+            var list = new List<Orders>();
+
+            var sql = "SELECT id, buyer_id, seller_id, date, product_id, amount, total_price FROM tab_orders;";
+            command.CommandText = sql;
+            var res = command.ExecuteReader();
+            if (!res.HasRows) return null;
+
+            while (res.Read())
+            {
+                var id = res.GetUInt32("id");
+                var buyer_id = res.GetUInt32("buyer_id");
+                var seller_id = res.GetUInt32("seller_id");
+                var date = res.GetString("date");
+                var product_id = res.GetUInt32("product_id");
+                var amount = res.GetUInt32("amount");
+                var total_price = res.GetUInt32("total_price");
+            }
+
+            Close();
             return list;
         }
     }
