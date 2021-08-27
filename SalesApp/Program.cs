@@ -13,8 +13,9 @@ namespace SalesApp
             var products = db.GetProducts();
             var buyers = db.GetBuyers();
             var orders = db.GetOrders();
-            Buyer buyer;
+            //Buyer buyer;
             Orders nextOrder;
+            nextOrder = new Orders();
 
             //foreach (var item in buyers)
             //{
@@ -38,11 +39,6 @@ namespace SalesApp
             //    Show.PrintLn($"{product.Id}: {product.Name}, {product.Price}");
             //}
 
-            foreach (var order in orders)
-            {
-                Show.PrintLn($"{order.Id}: {order.BuyerId}, {order.SellerId}, {order.Date}, {order.ProductId}, {order.Amount}, {order.TotalPrice}");
-            }
-
             //Show.Print("Введите номер продукта: ");
             //var product_id = uint.Parse(Console.ReadLine());
             //Show.Print("Введите количество: ");
@@ -59,6 +55,29 @@ namespace SalesApp
             //var price = products[(int)(product_id - 1)].Price;
             //var total_price = count_user * (price - price * buyer.Discount / 100);
             //Show.PrintLn($"Вам необходимо заплатить - {total_price}");
+
+            Console.Write("Добрый день, для заказа необходимо ввести:\n1. Номер заказа... ");
+            nextOrder.Id = uint.Parse(Console.ReadLine());
+            Console.Write("2. Номер покупателя... ");
+            nextOrder.BuyerId = uint.Parse(Console.ReadLine());
+            Console.Write("3. Номер продавца... ");
+            nextOrder.SellerId = uint.Parse(Console.ReadLine());
+            nextOrder.Date = Convert.ToString(DateTime.Now);
+            Console.Write("4. Номер продукта... ");
+            nextOrder.ProductId = uint.Parse(Console.ReadLine());
+            Console.Write("5. Цена... ");
+            nextOrder.Amount = uint.Parse(Console.ReadLine());
+            Console.Write("6. Стоимость итого... ");
+            nextOrder.TotalPrice = uint.Parse(Console.ReadLine());
+
+            db.AddOrders(nextOrder);
+
+            orders = db.GetOrders();
+
+            foreach (var order in orders)
+            {
+                Show.PrintLn($"{order.Id}: {order.BuyerId}, {order.SellerId}, {order.Date}, {order.ProductId}, {order.Amount}, {order.TotalPrice}");
+            }
         }
     }
 }

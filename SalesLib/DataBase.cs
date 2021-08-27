@@ -27,7 +27,7 @@ namespace SalesLib
         {
             Open();
             var list = new List<Product>();
-            
+
             var sql = "SELECT id, name, price FROM tab_products;";
             command.CommandText = sql;
             var res = command.ExecuteReader();
@@ -38,7 +38,7 @@ namespace SalesLib
                 var id = res.GetUInt32("id");
                 var name = res.GetString("name");
                 var price = res.GetUInt32("price");
-                list.Add(new Product {Id = id, Name = name, Price = price});
+                list.Add(new Product { Id = id, Name = name, Price = price });
             }
 
             Close();
@@ -48,7 +48,7 @@ namespace SalesLib
         public uint GetProductCount(uint id)
         {
             Open();
-            
+
             var sql = @$"SELECT count
                         FROM tab_products_stock
                         JOIN tab_products 
@@ -62,14 +62,14 @@ namespace SalesLib
             var count = res.GetUInt32("count");
 
             Close();
-            
+
             return count;
         }
 
         public List<Buyer> GetBuyers()
         {
             var list = new List<Buyer>();
-            
+
             Open();
 
             var sql = @"SELECT tab_buyers.id, first_name, last_name, discount
@@ -87,8 +87,8 @@ namespace SalesLib
                 var id = res.GetUInt32("id");
                 var name = $"{res.GetString("first_name")} {res.GetString("last_name")}";
                 var discount = res.GetUInt32("discount");
-                
-                list.Add(new Buyer {Id = id, Name = name, Discount = discount});
+
+                list.Add(new Buyer { Id = id, Name = name, Discount = discount });
             }
             Close();
             return list;
@@ -126,9 +126,10 @@ namespace SalesLib
             Open();
 
             var sql = @"INSERT INTO tab_orders (id, buyer_id, seller_id, date, product_id, amount, total_price) 
-                        VALUES ({nextOrder.Id}, {nextOrder.BuyerId}, {nextOrder.SellerId}, {nextOrder.Date}, {nextOrder.ProductId}, {nextOrder.Amount}, {nextOrder.TotalPrice})";
+                        VALUES ({nextOrder.Id}, {nextOrder.BuyerId}, {nextOrder.SellerId}, {nextOrder.Date}, {nextOrder.ProductId}, {nextOrder.Amount}, {nextOrder.TotalPrice});";
             command.CommandText = sql;
 
             Close();
         }
+    }
 }
