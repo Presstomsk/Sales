@@ -113,10 +113,22 @@ namespace SalesLib
                 var product_id = res.GetUInt32("product_id");
                 var amount = res.GetUInt32("amount");
                 var total_price = res.GetUInt32("total_price");
+
+                list.Add(new Orders { Id = id, BuyerId = buyer_id, SellerId = seller_id, Date = date, ProductId = product_id, Amount = amount, TotalPrice = total_price });
             }
 
             Close();
             return list;
         }
-    }
+
+        public void AddOrders(Orders nextOrder)
+        {
+            Open();
+
+            var sql = @"INSERT INTO tab_orders (id, buyer_id, seller_id, date, product_id, amount, total_price) 
+                        VALUES ({nextOrder.Id}, {nextOrder.BuyerId}, {nextOrder.SellerId}, {nextOrder.Date}, {nextOrder.ProductId}, {nextOrder.Amount}, {nextOrder.TotalPrice})";
+            command.CommandText = sql;
+
+            Close();
+        }
 }
