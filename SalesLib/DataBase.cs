@@ -15,14 +15,9 @@ namespace SalesLib
             command = new MySqlCommand { Connection = db };
         }
 
-        //public void Open() => db.Open();
-        public void Open()
-        {
-            db.Open();
-        }
+        public void Open() => db.Open();
 
         public void Close() => db.Close();
-
         public List<Product> GetProducts()
         {
             Open();
