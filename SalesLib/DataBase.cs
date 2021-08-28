@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using MySql.Data.MySqlClient;
 
 namespace SalesLib
 {
     public class DataBase
     {
-        private const string CONN_STR = "Server=mysql60.hostland.ru;Database=host1323541_sbd10;Uid=host1323541_itstep;Pwd=269f43dc;";
         private MySqlConnection db;
         private MySqlCommand command;
 
         public DataBase()
         {
-            db = new MySqlConnection(CONN_STR);
+            var connectionString = ConnectionString.Init(@"db_connect.ini");
+            db = new MySqlConnection(connectionString);
             command = new MySqlCommand { Connection = db };
         }
 
@@ -89,6 +90,17 @@ namespace SalesLib
             Close();
 
             return list;
+        }
+
+        public void ExportProductsToCSV(string path)
+        {
+            var products = GetProducts();
+
+            using var file = new StreamWriter(path, append: false);
+            foreach (var product in products)
+            {
+                file.WriteLine($"{product.Id}|{product.Name}|{product.Price}");
+            }
         }
     }
 }

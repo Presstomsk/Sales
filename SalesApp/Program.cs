@@ -1,5 +1,4 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
 using CLI;
 using SalesLib;
 
@@ -8,6 +7,21 @@ namespace SalesApp
     class Program
     {
         static void Main()
+        {
+            Show.Menu();
+            var select = Console.ReadLine();
+            switch (select)
+            {
+                case "1": // 1. Оформление заказа
+                    InitOrder();
+                    break;
+                case "2": // 2. Экспорт списка продуктов
+                    ExportProducts();
+                    break;
+            }
+        }
+
+        static void InitOrder()
         {
             var db = new DataBase();
             var products = db.GetProducts();
@@ -52,6 +66,12 @@ namespace SalesApp
             var price = products[(int)(product_id - 1)].Price;
             var total_price = count_user * (price - price * buyer.Discount / 100);
             Show.PrintLn($"Вам необходимо заплатить - {total_price}");
+        }
+
+        static void ExportProducts()
+        {
+            var db = new DataBase();
+            db.ExportProductsToCSV("products.csv");
         }
     }
 }
