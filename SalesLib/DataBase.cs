@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using MySql.Data.MySqlClient;
 
@@ -101,6 +102,50 @@ namespace SalesLib
             {
                 file.WriteLine($"{product.Id}|{product.Name}|{product.Price}");
             }
+        }
+
+        public void ImportProductsFromCSV(string path)
+        {
+            var products_csv = new List<Product>();
+            
+            using var file = new StreamReader(path);
+            
+            var line = string.Empty;
+            while ((line = file.ReadLine()) != null)
+            {
+                var temp = line.Split('|');
+                var product = new Product
+                {
+                    Id = uint.Parse(temp[0]),
+                    Name = temp[1],
+                    Price = uint.Parse(temp[2])
+                };
+                products_csv.Add(product);
+            }
+
+            //TODO Переписать проверку на уникальность
+            /*var products_db = GetProducts();
+            var products = new List<Product>();
+            uint i = 1; 
+            foreach (var product_db in products_db)
+            {
+                foreach (var product_csv in products_csv)  
+                {
+                    if (product_db.Name == product_csv.Name) continue; 
+                    
+                    products.Add(new Product {Id = i, Name = product_csv.Name, Price = product_csv.Price});
+                    i++;
+                }
+            }*/
+            
+            Open();
+            foreach (var product in products_csv)
+            {
+                var sql = $"INSERT INTO host1323541_sbd10.tab_products (name, price) VALUES ('{product.Name}', {product.Price});";
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+            }
+            Close();
         }
     }
 }
