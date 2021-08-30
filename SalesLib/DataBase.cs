@@ -125,9 +125,10 @@ namespace SalesLib
         {
             Open();
 
-            var sql = @"INSERT INTO tab_orders (id, buyer_id, seller_id, date, product_id, amount, total_price) 
-                        VALUES ({nextOrder.Id}, {nextOrder.BuyerId}, {nextOrder.SellerId}, {nextOrder.Date}, {nextOrder.ProductId}, {nextOrder.Amount}, {nextOrder.TotalPrice});";
+            var sql = @$"INSERT INTO tab_orders (buyer_id, seller_id, date, product_id, amount, total_price) 
+                        VALUES ({nextOrder.BuyerId}, {nextOrder.SellerId}, {nextOrder.Date}, {nextOrder.ProductId}, {nextOrder.Amount}, {nextOrder.TotalPrice});";
             command.CommandText = sql;
+            command.ExecuteReader();
 
             Close();
         }

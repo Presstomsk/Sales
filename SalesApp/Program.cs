@@ -56,18 +56,16 @@ namespace SalesApp
             //var total_price = count_user * (price - price * buyer.Discount / 100);
             //Show.PrintLn($"Вам необходимо заплатить - {total_price}");
 
-            Console.Write("Добрый день, для заказа необходимо ввести:\n1. Номер заказа... ");
-            nextOrder.Id = uint.Parse(Console.ReadLine());
-            Console.Write("2. Номер покупателя... ");
+            Console.Write("Добрый день, для заказа необходимо ввести:\n1. Номер покупателя... ");
             nextOrder.BuyerId = uint.Parse(Console.ReadLine());
-            Console.Write("3. Номер продавца... ");
+            Console.Write("2. Номер продавца... ");
             nextOrder.SellerId = uint.Parse(Console.ReadLine());
-            nextOrder.Date = Convert.ToString(DateTime.Now);
-            Console.Write("4. Номер продукта... ");
+            nextOrder.Date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            Console.Write("3. Номер продукта... ");
             nextOrder.ProductId = uint.Parse(Console.ReadLine());
-            Console.Write("5. Цена... ");
+            Console.Write("4. Цена... ");
             nextOrder.Amount = uint.Parse(Console.ReadLine());
-            Console.Write("6. Стоимость итого... ");
+            Console.Write("5. Стоимость итого... ");
             nextOrder.TotalPrice = uint.Parse(Console.ReadLine());
 
             db.AddOrders(nextOrder);
