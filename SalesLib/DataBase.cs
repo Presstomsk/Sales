@@ -126,9 +126,9 @@ namespace SalesLib
         public List<People> GetPeople()
         {
             Open();
-            var list = new List<Orders>();
+            var list = new List<People>();
 
-            var sql = "SELECT id, buyer_id, seller_id, date, product_id, amount, total_price FROM tab_orders;";
+            var sql = "SELECT id, first_name, last_name, phone;";
             command.CommandText = sql;
             var res = command.ExecuteReader();
             if (!res.HasRows) return null;
@@ -136,14 +136,11 @@ namespace SalesLib
             while (res.Read())
             {
                 var id = res.GetUInt32("id");
-                var buyer_id = res.GetUInt32("buyer_id");
-                var seller_id = res.GetUInt32("seller_id");
-                var date = res.GetString("date");
-                var product_id = res.GetUInt32("product_id");
-                var amount = res.GetUInt32("amount");
-                var total_price = res.GetUInt32("total_price");
+                var first_name = res.GetString("first_name");
+                var last_name = res.GetString("last_name");
+                var phone = res.GetString("phone");
 
-                list.Add(new Orders { Id = id, BuyerId = buyer_id, SellerId = seller_id, Date = date, ProductId = product_id, Amount = amount, TotalPrice = total_price });
+                list.Add(new People { Id = id, FirstName = first_name, LastName = last_name, Phone = phone });
             }
 
             Close();
@@ -173,13 +170,19 @@ namespace SalesLib
             }       
         }
 
-        public void UsersImport()
+        public void PeopleImport()
         {
 
         }
-        public void UsersExport()
+        public void PeopleExport(List<People> people, string peopleExportPath)
         {
-            
+            using (StreamWriter file = new StreamWriter(peopleExportPath, false))
+            {
+                foreach (var person in people)
+                {
+                    file.WriteLine($"{person.Id}|{person.FirstName}|{person.LastName}|{person.Phone};");
+                }
+            }
         }
     }
 }

@@ -81,7 +81,9 @@ namespace SalesApp
             //string ordersExportPath = "OrdersExport.csv";
             //db.OrdersExport(orders, ordersExportPath);
 
-
+            var people = db.GetPeople();
+            string peopleExportPath = "PeopleExport.csv";
+            db.PeopleExport(people, peopleExportPath);
         }
     }
 }
