@@ -123,6 +123,33 @@ namespace SalesLib
             return list;
         }
 
+        public List<People> GetPeople()
+        {
+            Open();
+            var list = new List<Orders>();
+
+            var sql = "SELECT id, buyer_id, seller_id, date, product_id, amount, total_price FROM tab_orders;";
+            command.CommandText = sql;
+            var res = command.ExecuteReader();
+            if (!res.HasRows) return null;
+
+            while (res.Read())
+            {
+                var id = res.GetUInt32("id");
+                var buyer_id = res.GetUInt32("buyer_id");
+                var seller_id = res.GetUInt32("seller_id");
+                var date = res.GetString("date");
+                var product_id = res.GetUInt32("product_id");
+                var amount = res.GetUInt32("amount");
+                var total_price = res.GetUInt32("total_price");
+
+                list.Add(new Orders { Id = id, BuyerId = buyer_id, SellerId = seller_id, Date = date, ProductId = product_id, Amount = amount, TotalPrice = total_price });
+            }
+
+            Close();
+            return list;
+        }
+
         public void AddOrders(Orders nextOrder)
         {
             Open();

@@ -71,15 +71,17 @@ namespace SalesApp
 
             //db.AddOrders(nextOrder);
 
-            orders = db.GetOrders();
+            //orders = db.GetOrders();
 
             //foreach (var order in orders)
             //{
             //    Show.PrintLn($"{order.Id}: {order.BuyerId}, {order.SellerId}, {order.Date}, {order.ProductId}, {order.Amount}, {order.TotalPrice}");
             //}
 
-            string ordersExportPath = "OrdersExport.csv";
-            db.OrdersExport(orders, ordersExportPath);
+            //string ordersExportPath = "OrdersExport.csv";
+            //db.OrdersExport(orders, ordersExportPath);
+
+
         }
     }
 }
