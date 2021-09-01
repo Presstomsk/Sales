@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using CLI;
 using SalesLib;
+using System.IO;
 
 namespace SalesApp
 {
@@ -13,7 +14,7 @@ namespace SalesApp
             var products = db.GetProducts();
             var buyers = db.GetBuyers();
             var orders = db.GetOrders();
-            //Buyer buyer;
+            Buyer buyer;
             Orders nextOrder;
             nextOrder = new Orders();
 
@@ -56,26 +57,29 @@ namespace SalesApp
             //var total_price = count_user * (price - price * buyer.Discount / 100);
             //Show.PrintLn($"Вам необходимо заплатить - {total_price}");
 
-            Console.Write("Добрый день, для заказа необходимо ввести:\n1. Номер покупателя... ");
-            nextOrder.BuyerId = uint.Parse(Console.ReadLine());
-            Console.Write("2. Номер продавца... ");
-            nextOrder.SellerId = uint.Parse(Console.ReadLine());
-            nextOrder.Date = DateTime.Now.ToString("yyyyMMddHHmmss");
-            Console.Write("3. Номер продукта... ");
-            nextOrder.ProductId = uint.Parse(Console.ReadLine());
-            Console.Write("4. Цена... ");
-            nextOrder.Amount = uint.Parse(Console.ReadLine());
-            Console.Write("5. Стоимость итого... ");
-            nextOrder.TotalPrice = uint.Parse(Console.ReadLine());
+            //Console.Write("Добрый день, для заказа необходимо ввести:\n1. Номер покупателя... ");
+            //nextOrder.BuyerId = uint.Parse(Console.ReadLine());
+            //Console.Write("2. Номер продавца... ");
+            //nextOrder.SellerId = uint.Parse(Console.ReadLine());
+            //nextOrder.Date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            //Console.Write("3. Номер продукта... ");
+            //nextOrder.ProductId = uint.Parse(Console.ReadLine());
+            //Console.Write("4. Цена... ");
+            //nextOrder.Amount = uint.Parse(Console.ReadLine());
+            //Console.Write("5. Стоимость итого... ");
+            //nextOrder.TotalPrice = uint.Parse(Console.ReadLine());
 
-            db.AddOrders(nextOrder);
+            //db.AddOrders(nextOrder);
 
             orders = db.GetOrders();
 
-            foreach (var order in orders)
-            {
-                Show.PrintLn($"{order.Id}: {order.BuyerId}, {order.SellerId}, {order.Date}, {order.ProductId}, {order.Amount}, {order.TotalPrice}");
-            }
+            //foreach (var order in orders)
+            //{
+            //    Show.PrintLn($"{order.Id}: {order.BuyerId}, {order.SellerId}, {order.Date}, {order.ProductId}, {order.Amount}, {order.TotalPrice}");
+            //}
+
+            string ordersExportPath = "OrdersExport.csv";
+            db.OrdersExport(orders, ordersExportPath);
         }
     }
 }

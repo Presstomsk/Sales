@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.IO;
+using System;
 
 namespace SalesLib
 {
@@ -131,6 +133,26 @@ namespace SalesLib
             command.ExecuteReader();
 
             Close();
+        }
+
+        public void OrdersExport(List<Orders> orders, string ordersExportPath)
+        {
+            using (StreamWriter file = new StreamWriter (ordersExportPath, false))
+            {
+                foreach (var order in orders)
+                {
+                    file.WriteLine($"{order.BuyerId}|{order.SellerId}|{order.BuyerId}|{order.Date}|{order.ProductId}|{order.Amount}|{order.TotalPrice};");
+                }
+            }       
+        }
+
+        public void UsersImport()
+        {
+
+        }
+        public void UsersExport()
+        {
+            
         }
     }
 }
